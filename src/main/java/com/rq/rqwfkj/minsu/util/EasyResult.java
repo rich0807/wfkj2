@@ -14,8 +14,6 @@ public class EasyResult {
     private int code;
     private String message;
     private Object data;
-
-
         public static EasyResult success(Object data) {
             EasyResult result = new EasyResult(200, "成功", data);
         return result;}
