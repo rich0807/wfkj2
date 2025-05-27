@@ -4,9 +4,8 @@ import com.rq.rqwfkj.minsu.entity.Sysuser;
 import com.rq.rqwfkj.minsu.service.ISysuserService;
 import com.rq.rqwfkj.minsu.util.EasyResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -29,7 +28,7 @@ ISysuserService sysuserService;
         List<Sysuser> list=sysuserService.list();
         return EasyResult.success(list);
     }
-
+@GetMapping("/login")
     public EasyResult login(Sysuser sysuser){
         Sysuser loginuser=sysuserService.login(sysuser);
         if (loginuser!=null){
@@ -37,6 +36,23 @@ ISysuserService sysuserService;
         }else {
             return EasyResult.error("登录失败");
         }
+    }
+
+    @RequestMapping("add")
+    public EasyResult add(@RequestBody Sysuser sysuser){
+        sysuserService.save(sysuser);
+        return EasyResult.success();
+    }
+
+    @RequestMapping("delete/{id}")
+    public EasyResult delete(@PathVariable int id){
+        sysuserService.removeById(id);
+        return EasyResult.success();
+    }
+    @RequestMapping("edit")
+    public EasyResult update(@RequestBody Sysuser sysuser){
+        sysuserService.updateById(sysuser);
+        return EasyResult.success();
     }
 
 }
