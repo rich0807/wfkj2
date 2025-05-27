@@ -24,9 +24,19 @@ public class SysuserController {
     @Autowired
 ISysuserService sysuserService;
 
-    @RequestMapping("/list")
+    @RequestMapping("list")
     public EasyResult getSysuser(){
-      List<Sysuser> list = sysuserService.list();
-      return EasyResult.success(list);
+        List<Sysuser> list=sysuserService.list();
+        return EasyResult.success(list);
     }
+
+    public EasyResult login(Sysuser sysuser){
+        Sysuser loginuser=sysuserService.login(sysuser);
+        if (loginuser!=null){
+            return EasyResult.success(loginuser);
+        }else {
+            return EasyResult.error("登录失败");
+        }
+    }
+
 }
