@@ -1,0 +1,22 @@
+server:
+  port: 8080
+
+mybatis:
+  mapper-locations: classpath:mappers/*.xml
+  type-aliases-package: com.rq.rqwfkj.mybatis.entity
+
+
+# DataSource Config
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/rqwfkj?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: 123456
+#  sql:
+#    init:
+#      schema-locations: classpath:db/schema-h2.sql
+logging:
+  level:
+    com.rq.rqwfkj.minsu.mapper: debug
+#      data-locations: classpath:db/data-h2.sql
