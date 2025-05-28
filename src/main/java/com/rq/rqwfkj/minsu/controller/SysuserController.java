@@ -17,6 +17,7 @@ import java.util.List;
  * @author RQ
  * @since 2025-05-26
  */
+@CrossOrigin
 @RestController
 @RequestMapping("/sysuser")
 public class SysuserController {

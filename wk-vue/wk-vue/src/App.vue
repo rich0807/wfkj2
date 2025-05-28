@@ -51,7 +51,13 @@
 </template>
 
 <script lang="ts" setup>
-import {ref} from 'vue'
+import {ref,onMounted} from 'vue'
+import API from './api/index.js';
+
+onMounted(async function() {
+const result=await API.getUsers();
+
+});
 
 const addData = ref({
   username: '张三',
@@ -106,6 +112,8 @@ const tableData = [
     tag: 'Office',
   },
 ]
+
+
 </script>       
 
 <style scoped>
