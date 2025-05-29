@@ -8,6 +8,16 @@ import http from '../util/http.js';
     addUsers:(data)=>{
         return http({url:'http://localhost:8080/sysuser/add',method:'post',data:data})
     },
+ deleteUsers:(id)=>{
+  return http({
+  url:'http://localhost:8080/sysuser/delete/'+id,
+    method:'delete'
+  })
+},
+//修改数据
+    updateUsers:(data)=>{
+        return http({url:'http://localhost:8080/sysuser/edit',method:'put',data:data})
+    },
 
     get:(url,params)=>{return http({url:url,method:'get',params:params})},
     del:(url,id)=>{

@@ -51,6 +51,7 @@ ISysuserService sysuserService;
         sysuserService.removeById(id);
         return EasyResult.success();
     }
+
     @RequestMapping("edit")
     public EasyResult update(@RequestBody Sysuser sysuser){
         sysuserService.updateById(sysuser);
