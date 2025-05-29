@@ -42,7 +42,8 @@ ISysuserService sysuserService;
     @RequestMapping("add")
     public EasyResult add(@RequestBody Sysuser sysuser){
         sysuserService.save(sysuser);
-        return EasyResult.success();
+        Sysuser adduser=sysuserService.getById(sysuser.getId());
+        return EasyResult.success(adduser);
     }
 
     @RequestMapping("delete/{id}")

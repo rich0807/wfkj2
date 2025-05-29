@@ -11,9 +11,9 @@
     <el-table-column fixed="right" label="Operations" min-width="120">
       <template #default>
         <el-button link type="primary" size="small" @click="handleClick">
-          Detail
+          编辑
         </el-button>
-        <el-button link type="primary" size="small">Edit</el-button>
+        <el-button link type="danger" size="small">删除</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -26,8 +26,11 @@
   
   
      <el-form :model="addData" label-width="auto" style="max-width: 600px">
-    <el-form-item label="用户名">
-      <el-input v-model="addData.username" placeholder="请输入用户名" />
+    <el-form-item label="用户账号">
+      <el-input v-model="addData.username" placeholder="请输入用户账号" />
+    </el-form-item>
+    <el-form-item label="联系方式">
+      <el-input v-model="addData.phone" placeholder="请输入联系方式" />
     </el-form-item>
      <el-form-item label="性别">
       <el-radio-group v-model="addData.gender">
@@ -40,9 +43,9 @@
 
     <template #footer>
       <div class="dialog-footer">
-        <el-button @click="dialogVisible = false">Cancel</el-button>
-        <el-button type="primary" @click="dialogVisible = false">
-          Confirm
+        <el-button @click="dialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="submitAdd">
+          提交
         </el-button>
       </div>      
     </template>
@@ -63,16 +66,31 @@ tableData.value=result.data;
 
 
 const addData = ref({
-  username: '张三',
- gender:'男'
+  username: '',
+ gender:'男',
+  phone: ''
 });
 
 //新增窗口是否可见
 const dialogVisible=ref(false);
 //点击新增按钮执行方法
 const handlerAdd=function (){
-  dialogVisible.value=true;
+  //清空新增数据
+  addData.value.username= ''
+  addData.value.phone= ''
+  addData.value.gender= '男'
+dialogVisible.value=true;
 }
+//提交新增数据
+const submitAdd = async function () {
+  //调用新增接口
+ const result = await API.addUsers(addData.value);
+ //添加返回的数据
+  tableData.value.unshift(result.data);
+    //关闭新增窗口
+    dialogVisible.value = false;
+ 
+};
 const handleClick = () => {
   console.log('click')
 }

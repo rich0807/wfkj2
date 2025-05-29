@@ -4,7 +4,10 @@ import http from '../util/http.js';
     getUsers:()=>{
         return http({url:'http://localhost:8080/sysuser/list',method:'get'})
     },
-
+   //新增数据
+    addUsers:(data)=>{
+        return http({url:'http://localhost:8080/sysuser/add',method:'post',data:data})
+    },
 
     get:(url,params)=>{return http({url:url,method:'get',params:params})},
     del:(url,id)=>{
